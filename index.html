@@ -3158,12 +3158,12 @@ function applyHash(){
   var h=window.location.hash.replace('#','').toLowerCase();
   if(!h) return;
   if(h==='overview'||h==='aag'){enterProgram('aag');}
-  else if(h==='talks'){enterProgram('all');ctView='list';ctType='all';}
-  else if(h==='posters'){enterProgram('all');ctView='list';ctType='poster';}
-  else if(h==='lightning'){enterProgram('all');ctView='list';ctType='lightning';}
-  else if(h==='parallel'){enterProgram('all');ctView='list';ctType='parallel';}
-  else if(h==='network'){enterProgram('all');ctView='network';}
-  else if(h==='saved'){enterProgram('aag');savedOnly=true;switchTab('all');}
+  else if(h==='talks'){ctView='list';ctType='all';enterProgram('all');render();}
+  else if(h==='posters'){ctView='list';ctType='poster';enterProgram('all');render();}
+  else if(h==='lightning'){ctView='list';ctType='lightning';enterProgram('all');render();}
+  else if(h==='parallel'){ctView='list';ctType='parallel';enterProgram('all');render();}
+  else if(h==='network'){ctView='network';enterProgram('all');render();}
+  else if(h==='saved'){savedOnly=true;enterProgram('all');render();}
   else if(h==='mon'||h==='monday'){enterProgram('mon');}
   else if(h==='tue'||h==='tuesday'){enterProgram('tue');}
   else if(h==='wed'||h==='wednesday'){enterProgram('wed');}
