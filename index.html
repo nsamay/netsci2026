@@ -418,8 +418,8 @@ a{color:#d42321;text-decoration:none}
       
       <!-- Program buttons -->
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
-        <div onclick="enterProgram('aag')" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:#1a1c2e;border:2px solid #1a1c2e;border-radius:20px;font-size:14px;font-weight:500;color:#fff;cursor:pointer;transition:all .15s" onmouseover="this.style.background='transparent';this.style.color='#1a1c2e'" onmouseout="this.style.background='#1a1c2e';this.style.color='#fff'">Program Overview</div>
-        <div onclick="enterProgram('all')" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:#d42625;border:2px solid #d42625;border-radius:20px;font-size:14px;font-weight:500;color:#fff;cursor:pointer;transition:all .15s" onmouseover="this.style.background='transparent';this.style.color='#d42625'" onmouseout="this.style.background='#d42625';this.style.color='#fff'">Talks and Posters</div>
+        <div onclick="enterProgram('aag')" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:#1a1c2e;border:2px solid #1a1c2e;border-radius:50px;font-size:14px;font-weight:500;color:#fff;cursor:pointer;transition:all .15s" onmouseover="this.style.background='transparent';this.style.color='#1a1c2e'" onmouseout="this.style.background='#1a1c2e';this.style.color='#fff'">Program Overview</div>
+        <div onclick="enterProgram('all')" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:#d42625;border:2px solid #d42625;border-radius:50px;font-size:14px;font-weight:500;color:#fff;cursor:pointer;transition:all .15s" onmouseover="this.style.background='transparent';this.style.color='#d42625'" onmouseout="this.style.background='#d42625';this.style.color='#fff'">Talks and Posters</div>
       </div>
 
       <!-- Divider -->
@@ -1837,6 +1837,12 @@ function enterProgram(dayOrAll,goSaved,searchQuery){
 
 /* === RENDER === */
 function render(){
+  if(curTab==='all'){
+    if(ctView==='network') history.replaceState(null,null,'#network');
+    else if(ctType==='poster') history.replaceState(null,null,'#posters');
+    else if(ctType==='lightning') history.replaceState(null,null,'#lightning');
+    else history.replaceState(null,null,'#talks');
+  }
   var cont=document.getElementById('content');
   var main=document.getElementById('main');
   var isSearch=curQ.length>0;
@@ -2308,6 +2314,8 @@ function initNetworkCanvas(){
   if(!canvas||!container) return;
   var ctx=canvas.getContext('2d');
   var W=container.clientWidth, H=container.clientHeight;
+  container.style.width=W+'px';
+  container.style.minWidth=W+'px';
   canvas.width=W*2; canvas.height=H*2;
   ctx.scale(2,2);
   var nodes=GRAPH.nodes, links=GRAPH.links, colors=GRAPH.colors;
@@ -3143,6 +3151,27 @@ document.addEventListener('click',function(e){
   var back=e.target.closest('.back-btn');
   if(back){openPanel(back.dataset.backId);return;}
 });
+setTimeout(applyHash,100);
+
+// Hash-based deep linking
+function applyHash(){
+  var h=window.location.hash.replace('#','').toLowerCase();
+  if(!h) return;
+  if(h==='overview'||h==='aag'){enterProgram('aag');}
+  else if(h==='talks'){enterProgram('all');ctView='list';ctType='all';}
+  else if(h==='posters'){enterProgram('all');ctView='list';ctType='poster';}
+  else if(h==='lightning'){enterProgram('all');ctView='list';ctType='lightning';}
+  else if(h==='parallel'){enterProgram('all');ctView='list';ctType='parallel';}
+  else if(h==='network'){enterProgram('all');ctView='network';}
+  else if(h==='saved'){enterProgram('aag');savedOnly=true;switchTab('all');}
+  else if(h==='mon'||h==='monday'){enterProgram('mon');}
+  else if(h==='tue'||h==='tuesday'){enterProgram('tue');}
+  else if(h==='wed'||h==='wednesday'){enterProgram('wed');}
+  else if(h==='thu'||h==='thursday'){enterProgram('thu');}
+  else if(h==='fri'||h==='friday'){enterProgram('fri');}
+}
+window.addEventListener('hashchange',applyHash);
+
 </script>
 </body>
 </html>
