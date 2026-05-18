@@ -75,7 +75,7 @@ a{color:#d42321;text-decoration:none}
 /* Main layout — single scroll with sticky sidebar */
 #main{flex:1;overflow:hidden;min-height:0;background:#f8f7f5}
 #main-row{display:flex;height:100%}
-#content{flex:1;min-width:0;background:#fff;overflow-y:auto;height:100%;padding-bottom:28px;padding-right:24px}
+#content{flex:1;min-width:0;background:#fff;overflow-y:auto;height:100%;padding-bottom:28px;padding-right:12px}
 #panel{width:0;flex-shrink:0;background:#f8f7f5;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;height:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}
 #panel.open{width:42%}
 #main.panel-open #content{border-right:1px solid #e2deda}
@@ -312,7 +312,7 @@ a{color:#d42321;text-decoration:none}
 .aag-mobile{display:none}
 .aag-desktop{display:block}
 @media(max-width:700px){
-  #aag-wrap{padding:12px 16px 40px}
+  #aag-wrap{padding:12px 4px 40px}
   .aag-desktop{display:none}
   .aag-mobile{display:block}
   .aag-mob-day{margin-bottom:28px}
@@ -337,7 +337,7 @@ a{color:#d42321;text-decoration:none}
 #page-program{display:none;flex-direction:column;flex:1;min-height:0;overflow:hidden;background:#fff}
 
 /* Contributed talks table */
-.ct-wrap{padding:16px 24px 40px}
+.ct-wrap{padding:16px 16px 40px}
 .ct-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .ct-title{font-size:30px;font-weight:300;color:#d42625}
 .ct-count{font-size:12px;color:#aaa}
@@ -2714,7 +2714,7 @@ function renderTimeline(cont){
     if(e.allDay&&e.type==='satellite') allDaySats.push(e);
   });
 
-  var h='<div style="padding:4px 16px 40px">';
+  var h='<div style="padding:4px 12px 40px">';
   // Day title
   var fullDay=FULL_DN[curTab]||'';
   if(fullDay) h+='<div id="timeline-title" style="padding:20px 0 4px;display:flex;align-items:center;justify-content:space-between;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease;position:relative;z-index:50"><div style="font-size:30px;font-weight:300;color:#d42625;line-height:1.2">'+fullDay+'</div><div id="filter-slot"></div></div>';
