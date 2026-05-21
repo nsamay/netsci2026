@@ -601,7 +601,7 @@ tue:[
 {id:"t-s2",time:"9:00 AM – 6:00 PM",startH:9,endH:18,title:"NetBioMed - Networks in Biology and Medicine",type:"satellite",room:"Central Square",url:"https://netbiomed-symposium.github.io/",presenter:"",allDay:true},
 {id:"t-s3",time:"9:00 AM – 6:00 PM",startH:9,endH:18,title:"XV Workshop “Economic & Financial Networks”",type:"satellite",room:"Kendall Square",url:"https://sites.google.com/view/fineconets-netsci2026/",presenter:"",allDay:true},
 {id:"t-s4",time:"2:30 – 6:00 PM",startH:14.5,endH:18.0,title:"Physical Networks, IV Edition",type:"satellite",room:"Harvard Square A",url:"https://sites.google.com/view/physnet26",presenter:""},
-{id:"t-s5",time:"9:00 AM – 12:30 PM",startH:9,endH:12.5,title:"The Spread of Contagions in Networks",type:"satellite",room:"Harvard Square A",url:"https://joelmiller.github.io/ContagionOnNetworks2026/schedule.html",presenter:""},
+{id:"t-s10",time:"9:00 AM – 12:30 PM",startH:9,endH:12.5,title:"The Spread of Contagions in Networks",type:"satellite",room:"Harvard Square A",url:"https://joelmiller.github.io/ContagionOnNetworks2026/index.html",presenter:""},
 {id:"t-s6",time:"9:00 AM – 12:30 PM",startH:9,endH:12.5,title:"The future of Network Science: WiNS @ NetSci 2026",type:"satellite",room:"Porter Square B",url:"https://sites.google.com/view/womeninnetworkscience/in-person-meetings/satellite-netsci-2026",presenter:""},
 {id:"t-s7",time:"9:00 AM – 12:30 PM",startH:9,endH:12.5,title:"Urban Networks in the Age of AI",type:"satellite",room:"Porter Square A",url:"https://sites.google.com/view/urbannetai/home",presenter:""},
 {id:"t-brk2",time:"10:30 – 11:00 AM",startH:10.5,endH:11,title:"Coffee Break",type:"break",room:"Amesbury Ballroom",presenter:""},
@@ -1676,7 +1676,7 @@ function parkFilter(){
 
 function renderAtAGlance(cont){
   var days=ALL_DAYS;
-  var PX=130;
+  var PX=140;
   var T0=8.0, T1=19.5;
   var TOTAL_H=Math.round((T1-T0)*PX);
   var LUNCH_S=12.5, LUNCH_E=14.5;
@@ -1909,7 +1909,7 @@ function renderAtAGlance(cont){
               out+='<div style="font-size:10px;font-weight:700;color:'+vcSch.bd+';letter-spacing:.05em">'+(sv.presenter&&sv.presenter.indexOf('&')>=0?'SCHOOL SPEAKERS':'SCHOOL LECTURE')+'</div>';
               out+='<div style="font-size:10px;color:'+vcSch.bd+';flex-shrink:0">'+trFull(sh,eh)+'</div>';
               out+='</div>';
-              out+='<div style="font-size:12px;font-weight:600;color:#1A1C2E;margin-bottom:4px;line-height:1.3;cursor:pointer" onclick="event.stopPropagation();openPanel(\''+sv.id+'\')">'+(sv.presenter||sv.title)+'</div>';
+              out+='<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px;line-height:1.3;cursor:pointer" class="aag-item" onclick="event.stopPropagation();openPanel(\''+sv.id+'\')">'+(sv.presenter||sv.title)+'</div>';
             }
 
             // Satellites section
@@ -1919,7 +1919,7 @@ function renderAtAGlance(cont){
               out+='<div style="font-size:10px;color:'+vcSat.tx+';opacity:.7;flex-shrink:0">'+trFull(sh,eh)+'</div>';
               out+='</div>';
               satEvs.forEach(function(ev,ei){
-                out+='<div class="sat-item" style="font-size:10px;font-weight:400;color:#1A1C2E;padding:2px 4px;'+(ei>0?'border-top:1px solid rgba(0,0,0,.06);':'')+';line-height:1.25;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"'
+                out+='<div class="sat-item aag-item" style="font-size:10px;font-weight:400;color:#555;padding:2px 4px;'+(ei>0?'border-top:1px solid rgba(0,0,0,.06);':'')+';line-height:1.25;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"'
                   +' onclick="event.stopPropagation();openPanel(\''+ev.id+'\')"'
                   +'>'+((ev._allDay||ev.allDay)?'<span style="font-size:9px;color:'+vcSat.bd+';font-weight:600;margin-right:4px">All day</span>':'')+ev.title+'</div>';
               });
