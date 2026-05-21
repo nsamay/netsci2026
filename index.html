@@ -316,7 +316,7 @@ a{color:#d42321;text-decoration:none}
 .aag-desktop{display:block}
 @media(max-width:700px){
   #aag-wrap{padding:12px 4px 40px}
-  .aag-desktop{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .aag-desktop{display:block}
   .aag-mobile{display:none}
   .aag-mob-day{margin-bottom:28px}
   .aag-mob-day-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding-bottom:6px;border-bottom:2px solid currentColor;margin-bottom:4px}
@@ -440,6 +440,8 @@ a{color:#d42321;text-decoration:none}
   /* Panel full width */
   #panel.open{width:100%!important}
 }
+
+.no-scrollbar::-webkit-scrollbar{display:none}
 </style>
 </head>
 <body>
@@ -2060,6 +2062,32 @@ function renderAtAGlance(cont){
   });
 
   cont.innerHTML='<div class="aag-desktop">'+dt+'</div><div class="aag-mobile">'+mb+'</div>';
+
+  // Mobile: sync header scroll with body scroll
+  setTimeout(function(){
+    var wrap=document.getElementById('aag-wrap');
+    if(!wrap||window.innerWidth>700) return;
+    var hdr=wrap.querySelector('.aag-hdr-row');
+    var body=wrap.querySelector('.aag-body-row');
+    if(!hdr||!body) return;
+    // Wrap body in scroll container
+    var scroller=document.createElement('div');
+    scroller.style.cssText='overflow-x:auto;-webkit-overflow-scrolling:touch';
+    body.parentNode.insertBefore(scroller,body);
+    scroller.appendChild(body);
+    // Also move gridlines into scroller
+    var gridlines=wrap.querySelectorAll('.aag-gridline');
+    gridlines.forEach(function(gl){scroller.appendChild(gl);});
+    // Wrap header in its own scroll container (hidden scrollbar)
+    var hdrScroll=document.createElement('div');
+    hdrScroll.style.cssText='overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:20;background:#fff;scrollbar-width:none;-ms-overflow-style:none';
+    hdr.parentNode.insertBefore(hdrScroll,hdr);
+    hdrScroll.appendChild(hdr);
+    // Hide header scrollbar with CSS
+    hdrScroll.classList.add('no-scrollbar');
+    // Sync scroll
+    scroller.addEventListener('scroll',function(){hdrScroll.scrollLeft=scroller.scrollLeft;});
+  },100);
 }
 
 
