@@ -3006,13 +3006,10 @@ function applyHash(){
 window.addEventListener('hashchange',applyHash);
 
 function showDayAAG(){
-  // Show the at-a-glance overview for the current day tab
+  // Show the day overview sidebar for the current day tab
   if(window.innerWidth<=700) return;
-  var pnl=document.getElementById('panel');
-  if(!pnl) return;
-  pnl.classList.add('open');
   var rb=document.getElementById('aag-restore-btn');if(rb)rb.style.display='none';
-  showTalksOverviewPanel();
+  showDayOverview(curTab);
 }
 
 </script>
