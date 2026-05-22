@@ -322,10 +322,10 @@ a{color:#d42321;text-decoration:none}
 .aag-mobile{display:none}
 .aag-desktop{display:block}
 @media(max-width:700px){
-  #aag-wrap{padding:12px 4px 40px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .aag-desktop{display:block}
+  #aag-wrap{padding:12px 4px 60px}
+  .aag-desktop{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   .aag-mobile{display:none}
-  .aag-hdr-row{min-width:max-content!important}
+  .aag-hdr-row{min-width:max-content!important;position:static!important}
   .aag-body-row{min-width:max-content!important}
   .aag-day-col{min-width:220px!important}
   .aag-hdr-day{min-width:220px!important}
@@ -576,7 +576,7 @@ var FOOTER_HTML='<footer class="footer-fixed"><a href="mailto:info@netsci2026.co
 var MAIN_DAYS=[{key:'wed',abbr:'Wed',date:'June 3'},{key:'thu',abbr:'Thu',date:'June 4'},{key:'fri',abbr:'Fri',date:'June 5'}];
 var SAT_DAYS=[{key:'mon',abbr:'Mon',date:'June 1'},{key:'tue',abbr:'Tue',date:'June 2'}];
 var ALL_DAYS=SAT_DAYS.concat(MAIN_DAYS);
-var TC={plenary:'#d42625',school:'#9b2323',lightning:'#e28e1e',parallel:'#10708e',satellite:'#0c6664',social:'#5b7fa6',special:'#1e3a5f',panel:'#ba7517',other:'#888'};
+var TC={plenary:'#d42625',school:'#9b2323',lightning:'#e28e1e',parallel:'#10708e',satellite:'#0c6664',social:'#5b7fa6',special:'#5953a2',panel:'#ba7517',other:'#888'};
 var TL={plenary:'Plenary',school:'School',lightning:'Lightning',parallel:'Parallel Session',satellite:'Satellite',social:'Community Event',special:'Special Session',panel:'Panel',other:'Other'};
 var DN={mon:'Mon June 1',tue:'Tue June 2',wed:'Wed June 3',thu:'Thu June 4',fri:'Fri June 5'};
 var DEFAULT_ROOM='Amesbury Ballroom';
@@ -1411,7 +1411,7 @@ function openPanel(id){
   if(hasSpeaker){
     h+='<div class="pn-sep"></div>';
   h+='<div style="padding:16px 24px">';
-    h+='<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#d42625;margin-bottom:14px">'+(ev.type==='special'?'Awardees':('Speaker'+(spk.n.length>1?'s':'')))+'</div>';
+    h+='<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:'+c+';margin-bottom:14px">'+(ev.type==='special'?'Awardees':('Speaker'+(spk.n.length>1?'s':'')))+'</div>';
     if(ev.type==='special'){
       spk.n.forEach(function(n,i){
         h+='<div style="margin-bottom:20px">';
@@ -1496,7 +1496,7 @@ function openPanel(id){
 
 
   if(ev.type==='special'&&ev.fellows){h+='<div class="pn-sep"></div>';
-  h+='<div style="padding:16px 24px">';h+='<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#d42625;margin-bottom:12px">NetSci Society Fellows — Class of 2026</div>';ev.fellows.split('|').forEach(function(f){var parts=f.split('::');h+='<div style="margin-bottom:8px;font-size:13px;line-height:1.5">';h+='<span style="font-weight:600;color:#1a1c2e">'+parts[0]+'</span>';if(parts[1]) h+=' <span style="color:#555;font-style:italic">'+parts[1]+'</span>';h+='</div>';});h+='</div>';}
+  h+='<div style="padding:16px 24px">';h+='<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:'+c+';margin-bottom:12px">NetSci Society Fellows — Class of 2026</div>';ev.fellows.split('|').forEach(function(f){var parts=f.split('::');h+='<div style="margin-bottom:8px;font-size:13px;line-height:1.5">';h+='<span style="font-weight:600;color:#1a1c2e">'+parts[0]+'</span>';if(parts[1]) h+=' <span style="color:#555;font-style:italic">'+parts[1]+'</span>';h+='</div>';});h+='</div>';}
 
   // 3. Actions
   h+='<div style="padding:16px 24px 16px 7px;display:flex;justify-content:flex-start;gap:8px;flex-wrap:wrap">';
@@ -1734,7 +1734,7 @@ function renderAtAGlance(cont){
     if(t==='lightning')return 'LIGHTNING TALKS';
     if(t==='parallel') return 'PARALLEL SESSIONS';
     if(t==='satellite')return 'SATELLITES';
-    if(t==='school')   return ev.presenter&&ev.presenter.indexOf('&')!==-1?'JOINT SCHOOL SPEAKERS':'SCHOOL TALK';
+    if(t==='school')   return ev.presenter&&ev.presenter.indexOf('&')!==-1?'JOINT SCHOOL SPEAKERS':'SCHOOL SPEAKER';
     if(t==='social')   return 'EVENT';
     return (TL[t]||t).toUpperCase();
   }
@@ -1914,7 +1914,7 @@ function renderAtAGlance(cont){
             if(schEvs.length>0){
               var sv=schEvs[0];
               out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:2px;margin-bottom:2px">';
-              out+='<div style="font-size:10px;font-weight:700;color:'+vcSch.bd+';letter-spacing:.05em">'+(sv.presenter&&sv.presenter.indexOf('&')>=0?'JOINT SCHOOL SPEAKERS':'SCHOOL TALK')+'</div>';
+              out+='<div style="font-size:10px;font-weight:700;color:'+vcSch.bd+';letter-spacing:.05em">'+(sv.presenter&&sv.presenter.indexOf('&')>=0?'JOINT SCHOOL SPEAKERS':'SCHOOL SPEAKER')+'</div>';
               out+='<div style="font-size:10px;color:'+vcSch.bd+';flex-shrink:0">'+trFull(sh,eh)+'</div>';
               out+='</div>';
               out+='<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px;line-height:1.3;cursor:pointer" class="aag-item" onclick="event.stopPropagation();openPanel(\''+sv.id+'\')">'+(sv.presenter||sv.title)+'</div>';
@@ -2086,15 +2086,17 @@ function renderAtAGlance(cont){
     // Also move gridlines into scroller
     var gridlines=wrap.querySelectorAll('.aag-gridline');
     gridlines.forEach(function(gl){scroller.appendChild(gl);});
-    // Wrap header in its own scroll container (hidden scrollbar)
+    // Wrap header in its own scroll container (desktop only)
+    if(window.innerWidth>700){
     var hdrScroll=document.createElement('div');
-    hdrScroll.style.cssText='overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:20;background:#fff;scrollbar-width:none;-ms-overflow-style:none';if(window.innerWidth<=700)hdrScroll.style.position='static';
+    hdrScroll.style.cssText='overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:20;background:#fff;scrollbar-width:none;-ms-overflow-style:none';
     hdr.parentNode.insertBefore(hdrScroll,hdr);
     hdrScroll.appendChild(hdr);
     // Hide header scrollbar with CSS
     hdrScroll.classList.add('no-scrollbar');
     // Sync scroll
     scroller.addEventListener('scroll',function(){hdrScroll.scrollLeft=scroller.scrollLeft;});
+    }
   },100);
 }
 
