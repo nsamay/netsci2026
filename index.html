@@ -322,13 +322,9 @@ a{color:#d42321;text-decoration:none}
 .aag-mobile{display:none}
 .aag-desktop{display:block}
 @media(max-width:700px){
-  #aag-wrap{padding:12px 4px 60px}
-  .aag-desktop{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #aag-wrap{padding:12px 4px 40px}
+  .aag-desktop{display:block}
   .aag-mobile{display:none}
-  .aag-hdr-row{min-width:max-content!important;position:static!important}
-  .aag-body-row{min-width:max-content!important}
-  .aag-day-col{min-width:220px!important}
-  .aag-hdr-day{min-width:220px!important}
   .aag-mob-day{margin-bottom:28px}
   .aag-mob-day-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding-bottom:6px;border-bottom:2px solid currentColor;margin-bottom:4px}
   .aag-mob-row{display:flex;gap:8px;border-bottom:1px solid #f0ede9;min-height:28px}
@@ -2078,17 +2074,7 @@ function renderAtAGlance(cont){
     // Also move gridlines into scroller
     var gridlines=wrap.querySelectorAll('.aag-gridline');
     gridlines.forEach(function(gl){scroller.appendChild(gl);});
-    // Wrap header in its own scroll container (desktop only)
-    if(window.innerWidth>700){
-    var hdrScroll=document.createElement('div');
-    hdrScroll.style.cssText='overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:20;background:#fff;scrollbar-width:none;-ms-overflow-style:none';
-    hdr.parentNode.insertBefore(hdrScroll,hdr);
-    hdrScroll.appendChild(hdr);
-    // Hide header scrollbar with CSS
-    hdrScroll.classList.add('no-scrollbar');
-    // Sync scroll
-    scroller.addEventListener('scroll',function(){hdrScroll.scrollLeft=scroller.scrollLeft;});
-    }
+    // Scroll sync removed — #content handles both axes natively
   },100);
 }
 
