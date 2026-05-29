@@ -41,7 +41,7 @@ a{color:#d42321;text-decoration:none}
 /* Nav bar */
 #tabs{display:flex;align-items:stretch;background:#fff;border-bottom:2px solid #e2deda;padding:0 16px}
 #tab-list{display:flex;align-items:stretch;flex:1}
-.dtab{cursor:pointer;padding:12px 10px;background:transparent;border:none;border-bottom:3px solid transparent;font-family:'Rubik',sans-serif;transition:all .12s;margin-bottom:-2px;font-size:14px;font-weight:500;color:#d42625;display:flex;align-items:center}
+.dtab{cursor:pointer;padding:0 10px 4px;background:transparent;border:none;border-bottom:3px solid transparent;font-family:'Rubik',sans-serif;transition:all .12s;margin-bottom:-2px;font-size:14px;font-weight:500;color:#d42625;display:flex;align-items:center}
 .dtab:hover{opacity:.7}
 .dtab .tab-day{font-weight:400;color:rgb(125,125,125);display:inline}
 .dtab .tab-num{font-weight:500;color:rgb(125,125,125);display:inline}
@@ -82,7 +82,7 @@ a{color:#d42321;text-decoration:none}
 #panel{width:0;flex-shrink:0;background:#f8f7f5;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;height:100%;transition:width .15s cubic-bezier(.4,0,.2,1)}
 #panel.open{width:38%}
 @media(min-width:701px){
-#main.panel-open #content{border-right:1px solid #e2deda;padding-right:8px}
+#main.panel-open #content{padding-right:8px}
 #main.panel-open #aag-wrap{padding-right:16px}
 #main.panel-open .aag-hdr-row{min-width:0!important}
 #main.panel-open .aag-body-row{min-width:0!important}
@@ -107,7 +107,7 @@ a{color:#d42321;text-decoration:none}
 #hero .track-chip:hover{border-color:#d42321;color:#d42321}
 
 /* All-view section title */
-.all-section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#1f2024;padding:20px 0 12px;display:flex;align-items:center;gap:10px}
+.all-section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#1f2024;padding:20px 0 12px;display:flex;align-items:center;gap:10px;border-top:1px solid #e2deda}
 .all-section-title::after{content:'';flex:1;height:1px;background:#e2deda}
 
 /* All-view card grid */
@@ -151,10 +151,10 @@ a{color:#d42321;text-decoration:none}
 .ev.tl-in .ev-node{opacity:1;transform:scale(1)}
 .ev-arm{position:absolute;left:-12px;width:0;height:1.5px;background:#e2deda;z-index:1;transition:width .3s ease .15s}
 .ev.tl-in .ev-arm{width:12px}
-.ev-card{flex:1;background:#f8f7f5;padding:8px 18px 14px;cursor:pointer;transition:box-shadow .15s,opacity .3s ease;position:relative}
+.ev-card{flex:1;background:#f8f7f5;padding:8px 18px 14px 15px;cursor:pointer;transition:box-shadow .15s,opacity .3s ease;position:relative;border-left:3px solid var(--ev-color,#888)}
 .ev-card:hover{box-shadow:0 1px 6px rgba(0,0,0,.06)}
 .ev-card.selected{box-shadow:0 0 0 2px rgba(0,0,0,.12)}
-.ev-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:0;background:none!important;display:inline-block;margin-bottom:6px;width:fit-content;align-self:flex-start}
+.ev-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:0;background:none!important;display:inline-block;margin-bottom:10px;width:fit-content;align-self:flex-start}
 .ev-title{font-size:17px;font-weight:400;color:#1f2024;line-height:1.2}
 .ev-title.key{font-size:17px;font-weight:500;color:#1f2024}
 .ev-meta{font-size:12px;color:#aaa;margin-top:5px}
@@ -166,8 +166,8 @@ a{color:#d42321;text-decoration:none}
 .brk-time{width:56px;text-align:right;flex-shrink:0;padding-right:4px;position:absolute;left:-82px;padding-top:0}
 .brk-time-h{font-size:17px;color:#a3a2a1;font-style:normal;display:block;line-height:1}
 .brk-time-p{display:none}
-.brk-body{flex:1;padding:10px 18px;background:#fff;border:1px solid #e2deda;display:flex;align-items:center;gap:8px}
-.brk-title{font-size:15px;font-weight:400;color:#a3a2a1;font-style:normal}
+.brk-body{flex:1;padding:10px 18px;background:#fff;border:1px solid #e2deda;border-left:3px solid #8b8b8b;display:flex;align-items:center;gap:8px}
+.brk-title{font-size:15px;font-weight:400;color:#8b8b8b;font-style:normal}
 .brk-sub{font-size:12px;color:#c5c1bb;font-style:italic;margin-top:0;display:flex;align-items:center;gap:4px}
 .brk-node{width:24px;flex-shrink:0;display:flex;justify-content:center;position:absolute;left:-24px;z-index:2;opacity:0;transform:scale(.3);transition:opacity .3s ease,transform .3s cubic-bezier(.34,1.56,.64,1)}
 .brk.tl-in .brk-node{opacity:1;transform:scale(1)}
@@ -175,7 +175,7 @@ a{color:#d42321;text-decoration:none}
 /* Parallel grid */
 .par-header{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .par-grid{display:grid;gap:10px}
-.par-card{background:#f8f7f5;padding:10px 20px 16px;cursor:pointer;transition:box-shadow .12s;position:relative;margin-bottom:2px}
+.par-card{background:#f8f7f5;padding:10px 20px 16px 16px;cursor:pointer;transition:box-shadow .12s;position:relative;margin-bottom:2px;border-left:3px solid var(--par-color,#10708e)}
 .par-card:hover{box-shadow:0 1px 6px rgba(0,0,0,.06)}
 .par-card.selected{box-shadow:0 0 0 2px rgba(0,0,0,.12)}
 .par-title{font-size:15px;font-weight:400;color:#1f2024;line-height:1.3}
@@ -236,7 +236,7 @@ a{color:#d42321;text-decoration:none}
 .sess-meta-item{display:flex;align-items:center;gap:6px}
 .sess-meta-item svg{opacity:.55;flex-shrink:0}
 .sess-talks{max-width:860px;margin:0 auto;width:100%;padding:8px 24px 48px}
-.talk-entry{padding:22px 0;border-bottom:1px solid #eee}
+.talk-entry{padding:22px 0;border-bottom:1px solid #e2deda}
 .talk-entry:last-child{border-bottom:none}
 .talk-idx{font-size:11px;font-weight:600;color:#aaa;text-transform:uppercase;display:block;margin-bottom:5px}
 .talk-title{font-size:15px;font-weight:500;color:#1f2024;line-height:1.3;margin-bottom:8px}
@@ -493,19 +493,19 @@ a{color:#d42321;text-decoration:none}
       <!-- Divider -->
       <div style="display:flex;align-items:center;gap:12px;margin:12px 0 20px">
         <div style="flex:1;height:1px;background:#e2deda"></div>
-        <span style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">or explore by day</span>
+        <span style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;font-weight:500">or explore by day</span>
         <div style="flex:1;height:1px;background:#e2deda"></div>
       </div>
 
       <!-- Day cards -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px" class="landing-days">
-        <div style="background:#f8f7f5;padding:16px 22px 20px;cursor:pointer;border-radius:6px;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)'" onmouseout="this.style.boxShadow='none'" onclick="enterProgram('mon')">
+        <div style="background:#f8f7f5;padding:16px 22px 20px;cursor:pointer;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)'" onmouseout="this.style.boxShadow='none'" onclick="enterProgram('mon')">
           <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#9b2323;margin-bottom:8px;display:inline-block">School & Satellites</span>
           <div style="font-size:22px;font-weight:400;color:#1f2024;margin-bottom:4px">June 1 &ndash; 2</div>
           <div style="font-size:12px;color:#888;line-height:1.35;margin-bottom:14px">Focused workshops, thematic satellites, and NetSci School lectures.</div>
           <div id="lp-sat-chips" style="display:flex;gap:6px;flex-wrap:wrap"></div>
         </div>
-        <div style="background:#f8f7f5;padding:16px 22px 20px;cursor:pointer;border-radius:6px;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)'" onmouseout="this.style.boxShadow='none'" onclick="enterProgram('wed')">
+        <div style="background:#f8f7f5;padding:16px 22px 20px;cursor:pointer;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)'" onmouseout="this.style.boxShadow='none'" onclick="enterProgram('wed')">
           <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#d42625;margin-bottom:8px;display:inline-block">Main Conference</span>
           <div style="font-size:22px;font-weight:400;color:#1f2024;margin-bottom:4px">June 3 &ndash; 5</div>
           <div style="font-size:12px;color:#888;line-height:1.35;margin-bottom:14px">Keynotes, invited talks, parallel sessions, lightning talks, and posters.</div>
@@ -2624,12 +2624,11 @@ function renderTimeline(cont){
     if(e.allDay&&e.type==='satellite') allDaySats.push(e);
   });
 
-  var h='<div style="padding:4px 12px 40px">';
+  var h='<div style="padding:0 12px 40px">';
   // Day title
   var fullDay=FULL_DN[curTab]||'';
-  if(fullDay) h+='<div id="timeline-title" style="padding:20px 0 4px;display:flex;align-items:center;justify-content:space-between;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease;position:relative;z-index:50"><div style="font-size:30px;font-weight:300;color:#d42625;line-height:1.2">'+fullDay+'</div><div id="filter-slot"></div></div>';
+  if(fullDay) h+='<div id="timeline-title" style="padding:14px 0 8px;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease;position:relative;z-index:50;display:flex;align-items:center;justify-content:space-between"><div style="font-size:30px;font-weight:300;color:#d42625;line-height:1.2">'+fullDay+'</div><div id="filter-slot"></div></div><div style="height:1px;background:#e2deda;margin-bottom:18px"></div>';
 
-  h+='<div style="height:1px;background:#d9d5d0;margin:12px 0 18px 0"></div>';
   h+='<div class="tl"><div class="tl-line"></div>';
   var rendered={};
   pOrder.forEach(function(p){
@@ -2646,7 +2645,7 @@ function renderTimeline(cont){
         h+='<div class="ev-time" style="padding-top:12px"><span class="ev-time-h">'+fmtH(ev.startH)+'</span><span class="ev-time-p">'+(ev.startH<12?'AM':'PM')+'</span></div>';
         h+='<div class="ev-node" style="top:20px"><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#0c6664"/></svg></div>';
         h+='<div class="ev-arm" style="top:25px"></div>';
-        h+='<div style="flex:1;background:#f8f7f5;padding:20px 22px;min-height:60px;display:flex;align-items:center"><span style="font-style:italic;color:#0c6664;font-size:15px">'+ev.title+'</span><span style="color:#aaa;margin-left:12px;font-size:12px;font-style:normal">'+durStr(ev)+'</span></div>';
+        h+='<div style="flex:1;background:#f8f7f5;padding:20px 22px 20px 19px;min-height:60px;display:flex;align-items:center;border-left:3px solid #0c6664"><span style="font-style:italic;color:#0c6664;font-size:15px">'+ev.title+'</span><span style="color:#aaa;margin-left:12px;font-size:12px;font-style:normal">'+durStr(ev)+'</span></div>';
         h+='</div>';
         return;
       }
@@ -2678,12 +2677,12 @@ function renderTimeline(cont){
         h+='<div style="flex:1">';
         h+='<div class="par-grid" style="grid-template-columns:repeat('+cols+',1fr)">';
         allSatsAtTime.forEach(function(pe){
-          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" onclick="openPanel(\''+pe.id+'\')">';
+          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" style="--par-color:'+TC.satellite+'" onclick="openPanel(\''+pe.id+'\')">';
           h+='<button style="position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;padding:4px" onclick="event.stopPropagation();toggleFav(\''+pe.id+'\',event)">'+(FAV[pe.id]?ICO_STAR_ON:ICO_STAR_OFF)+'</button>';
           h+='<div class="ev-badge" style="color:'+TC.satellite+';margin-bottom:6px">'+typeLabel(pe)+'</div>';
           var _pt=pe.title,_di=_pt.indexOf(' \u2014 ');
           if(_di>0){
-            h+='<div class="par-title"><span style="color:#10708e">'+_pt.substring(0,_di)+'</span> '+_pt.substring(_di+3)+'</div>';
+            h+='<div class="par-title">'+_pt.substring(0,_di)+' \u2014 '+_pt.substring(_di+3)+'</div>';
           } else {
             h+='<div class="par-title">'+_pt+'</div>';
           }
@@ -2708,12 +2707,12 @@ function renderTimeline(cont){
         h+='<div style="flex:1">';
         h+='<div class="par-grid" style="grid-template-columns:repeat('+cols+',1fr)">';
         parallels.forEach(function(pe){
-          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" onclick="openPanel(\''+pe.id+'\')">';
+          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" style="--par-color:#10708e" onclick="openPanel(\''+pe.id+'\')">';
           h+='<button style="position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;padding:4px" onclick="event.stopPropagation();toggleFav(\''+pe.id+'\',event)">'+(FAV[pe.id]?ICO_STAR_ON:ICO_STAR_OFF)+'</button>';
           h+='<div class="ev-badge" style="color:#10708e;margin-bottom:0">Parallel Session</div>';
           var _pt=pe.title,_di=_pt.indexOf(' \u2014 ');
           if(_di>0){
-            h+='<div class="par-title"><span style="color:#10708e">'+_pt.substring(0,_di)+'</span> '+_pt.substring(_di+3)+'</div>';
+            h+='<div class="par-title">'+_pt.substring(0,_di)+' \u2014 '+_pt.substring(_di+3)+'</div>';
           } else {
             h+='<div class="par-title">'+_pt+'</div>';
           }
@@ -2735,7 +2734,7 @@ function renderTimeline(cont){
         h+='<div style="flex:1;display:grid;grid-template-columns:repeat('+nonBreak.length+',1fr);gap:2px">';
         nonBreak.forEach(function(ne){
           var nc=TC[ne.type]||'#888';
-          h+='<div class="ev-card'+(selId===ne.id?' selected':'')+'" data-id="'+ne.id+'" onclick="openPanel(\''+ne.id+'\')">';
+          h+='<div class="ev-card'+(selId===ne.id?' selected':'')+'" data-id="'+ne.id+'" style="--ev-color:'+nc+'" onclick="openPanel(\''+ne.id+'\')">';
           h+='<button class="ev-star" onclick="toggleFav(\''+ne.id+'\',event)">'+(FAV[ne.id]?ICO_STAR_ON:ICO_STAR_OFF)+'</button>';
           if(!ne.remarks) h+='<span class="ev-badge" style="background:'+nc+'">'+typeLabel(ne)+'</span>';
           h+='<div class="ev-title'+(isKeyNote(ne)?' key':'')+'">'+(ne.presenter||ne.title)+'</div>';
@@ -2753,7 +2752,7 @@ function renderTimeline(cont){
       h+='<div class="ev-time" style="padding-top:12px"><span class="ev-time-h">'+fmtH(ev.startH)+'</span><span class="ev-time-p">'+(ev.startH<12?'AM':'PM')+'</span></div>';
       h+='<div class="ev-node" style="top:20px"><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="'+c+'"/></svg></div>';
       h+='<div class="ev-arm" style="top:25px"></div>';
-      h+='<div class="ev-card'+(selId===ev.id?' selected':'')+'" data-id="'+ev.id+'" onclick="openPanel(\''+ev.id+'\')">';
+      h+='<div class="ev-card'+(selId===ev.id?' selected':'')+'" data-id="'+ev.id+'" style="--ev-color:'+c+'" onclick="openPanel(\''+ev.id+'\')">';
       h+='<button class="ev-star" onclick="toggleFav(\''+ev.id+'\',event)">'+(FAV[ev.id]?ICO_STAR_ON:ICO_STAR_OFF)+'</button>';
       if(!ev.remarks) h+='<span class="ev-badge" style="color:'+c+'">'+typeLabel(ev)+'</span>';
       if((ev.type==='plenary'||ev.type==='school')&&!ev.remarks){
