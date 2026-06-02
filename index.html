@@ -157,7 +157,7 @@ a{color:#d42321;text-decoration:none}
 .ev-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:0;background:none!important;display:inline-block;margin-bottom:10px;width:fit-content;align-self:flex-start}
 .ev-title{font-size:17px;font-weight:400;color:#1f2024;line-height:1.2}
 .ev-title.key{font-size:17px;font-weight:500;color:#1f2024}
-.ev-meta{font-size:12px;color:#aaa;margin-top:5px}
+.ev-meta{font-size:12px;color:#444;margin-top:5px}
 .ev-star{position:absolute;top:12px;right:14px;background:none;border:none;cursor:pointer;padding:2px}
 
 /* Breaks on timeline */
@@ -1940,7 +1940,8 @@ function renderAtAGlance(cont){
               out+='<div style="font-size:10px;font-weight:700;color:'+vcSch.bd+';letter-spacing:.05em">'+(sv.presenter&&sv.presenter.indexOf('&')>=0?'JOINT SCHOOL SPEAKERS':'SCHOOL SPEAKER')+'</div>';
               out+='<div style="font-size:10px;color:'+vcSch.bd+';flex-shrink:0">'+trFull(sh,eh)+'</div>';
               out+='</div>';
-              out+='<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px;line-height:1.3;cursor:pointer" class="aag-item" onclick="event.stopPropagation();openPanel(\''+sv.id+'\')">'+(sv.presenter||sv.title)+'</div>';
+              out+='<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px;line-height:1.3;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:6px" class="aag-item" onclick="event.stopPropagation();openPanel(\''+sv.id+'\')">'+
+              '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(sv.presenter||sv.title)+'</span>'+(sv.room?'<span style="font-size:9px;background:'+vcSch.bd+'33;color:'+vcSch.bd+';padding:1px 5px;border-radius:2px;flex-shrink:0;white-space:nowrap">'+sv.room.replace(' Ballroom','').replace(' Square','')+'</span>':'')+'</div>';
             }
 
             // Satellites section
@@ -1950,9 +1951,9 @@ function renderAtAGlance(cont){
               out+='<div style="font-size:10px;color:'+vcSat.tx+';opacity:.7;flex-shrink:0">'+trFull(sh,eh)+'</div>';
               out+='</div>';
               satEvs.forEach(function(ev,ei){
-                out+='<div class="sat-item aag-item" style="font-size:10px;font-weight:400;color:#555;padding:2px 4px;'+(ei>0?'border-top:1px solid rgba(0,0,0,.06);':'')+';line-height:1.25;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"'
+                out+='<div class="sat-item aag-item" style="font-size:10px;font-weight:400;color:#555;padding:3px 4px;'+(ei>0?'border-top:1px solid rgba(0,0,0,.06);':'')+';line-height:1.25;cursor:pointer;display:flex;align-items:center;gap:6px;overflow:hidden"'
                   +' onclick="event.stopPropagation();openPanel(\''+ev.id+'\')"'
-                  +'>'+((ev._allDay||ev.allDay)?'<span style="font-size:9px;color:'+vcSat.bd+';font-weight:600;margin-right:4px">All day</span>':'')+ev.title+'</div>';
+                  +'><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+ev.title+'</span>'+'<span style="font-size:9px;background:'+vcSat.bd+'33;color:'+vcSat.bd+';padding:1px 5px;border-radius:2px;flex-shrink:0;white-space:nowrap">'+ev.room.replace(' Ballroom','').replace(' Square','')+'</span>'+'</div>';
               });
             }
 
@@ -1974,41 +1975,43 @@ function renderAtAGlance(cont){
 
         if(type==='parallel'){
           out+='<div class="aag-ev" style="'+sty+'overflow-y:auto">';
-          out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:3px;margin-bottom:3px">';
+          out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:3px;margin-bottom:4px;margin-top:2px">';
           out+='<div style="font-size:10px;font-weight:700;color:'+vc.bd+';letter-spacing:.05em">PARALLEL SESSIONS</div>';
           out+='<div style="font-size:10px;color:'+vc.bd+';flex-shrink:0">'+trFull(sh,eh)+'</div>';
           out+='</div>';
           grp.forEach(function(ev){
             var psm=ev.title.match(/PS \d+\.\d+/);
             var nm=ev.title.replace(/^PS \d+\.\d+ [\u2014\-] /,'');
-            out+='<div class="aag-item" style="font-size:10px;color:#555;padding:2px 0;border-top:1px solid '+vc.bd+'33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;line-height:1.3"'
+            out+='<div class="aag-item" style="font-size:10px;color:#555;padding:3px 0;border-top:1px solid '+vc.bd+'33;cursor:pointer;line-height:1.3;display:flex;align-items:center;justify-content:space-between;gap:6px"'
               +' onclick="event.stopPropagation();openPanel(\''+ev.id+'\')"'
               +'>'
-              +(psm?'<b style="color:'+vc.tx+'">'+psm[0]+'</b> ':'')+nm+'</div>';
+              +'<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(psm?'<b style="color:'+vc.tx+'">'+psm[0]+'</b> ':'')+nm+'</span>'
+              +'<span style="font-size:9px;background:'+vc.bd+'33;color:'+vc.bd+';padding:1px 4px;border-radius:2px;flex-shrink:0;white-space:nowrap">'+ev.room.replace(' Ballroom','').replace(' Square','')+'</span>'
+              +'</div>';
           });
           out+='</div>';
         } else if(type==='satellite'){
           out+='<div class="aag-ev" style="'+sty+'overflow-y:auto">';
-          out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:3px;margin-bottom:3px">';
+          out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:3px;margin-bottom:4px;margin-top:2px">';
           out+='<div style="font-size:10px;font-weight:700;color:'+vc.bd+';letter-spacing:.05em">SATELLITES</div>';
           out+='<div style="font-size:10px;color:'+vc.bd+';flex-shrink:0">'+trFull(sh,eh)+'</div>';
           out+='</div>';
           grp.forEach(function(ev){
-            out+='<div class="aag-item" style="font-size:10px;color:#555;padding:2px 0;border-top:1px solid '+vc.bd+'33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;line-height:1.3"'
+            out+='<div class="aag-item" style="font-size:10px;color:#555;padding:3px 0;border-top:1px solid '+vc.bd+'33;cursor:pointer;line-height:1.3;display:flex;align-items:center;justify-content:space-between;gap:6px"'
               +' onclick="event.stopPropagation();openPanel(\''+ev.id+'\')"'
-              +'>'+((ev._allDay||ev.allDay)?'<span style="font-size:9px;color:'+vcSat.bd+';font-weight:600;margin-right:4px">All day</span>':'')+ev.title+'</div>';
+              +'><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+ev.title+'</span>'+(ev.room?'<span style="font-size:9px;background:'+vcSat.bd+'33;color:'+vcSat.bd+';padding:1px 5px;border-radius:2px;flex-shrink:0;white-space:nowrap">'+ev.room.replace(' Ballroom','').replace(' Square','')+'</span>':'')+'</div>';
           });
           out+='</div>';
         } else if(grp.length===1){
           out+=singleEvBlock(sty+(grp[0].type==='special'?'overflow-y:auto;':''), grp[0], vc);
         } else {
           out+='<div class="aag-ev" style="'+sty+'overflow-y:auto">';
-          out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:3px;margin-bottom:3px">';
+          out+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:3px;margin-bottom:4px;margin-top:2px">';
           out+='<div style="font-size:10px;font-weight:700;color:'+vc.bd+';letter-spacing:.05em">'+(TL[type]||type).toUpperCase()+'</div>';
           out+='<div style="font-size:10px;color:'+vc.bd+';flex-shrink:0">'+trFull(sh,eh)+'</div>';
           out+='</div>';
           grp.forEach(function(ev){
-            out+='<div class="aag-item" style="font-size:10px;color:#555;padding:2px 0;border-top:1px solid '+vc.bd+'33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;line-height:1.3"'
+            out+='<div class="aag-item" style="font-size:10px;color:#555;padding:3px 0;border-top:1px solid '+vc.bd+'33;cursor:pointer;line-height:1.3;display:flex;align-items:center;justify-content:space-between;gap:6px"'
               +' onclick="event.stopPropagation();openPanel(\''+ev.id+'\')"'
               +'>'+(ev.presenter||ev.title)+'</div>';
           });
@@ -2703,16 +2706,16 @@ function renderTimeline(cont){
         h+='<div style="flex:1">';
         h+='<div class="par-grid" style="grid-template-columns:repeat('+cols+',1fr)">';
         allSatsAtTime.forEach(function(pe){
-          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" onclick="openPanel(\''+pe.id+'\')">';
+          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" style="--par-color:'+TC.satellite+'" onclick="openPanel(\''+pe.id+'\')">';
           h+='<button style="position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;padding:4px" onclick="event.stopPropagation();toggleFav(\''+pe.id+'\',event)">'+(FAV[pe.id]?ICO_STAR_ON:ICO_STAR_OFF)+'</button>';
           h+='<div class="ev-badge" style="color:'+TC.satellite+';margin-bottom:6px">'+typeLabel(pe)+'</div>';
           var _pt=pe.title,_di=_pt.indexOf(' \u2014 ');
           if(_di>0){
-            h+='<div class="par-title"><span style="color:#10708e">'+_pt.substring(0,_di)+'</span> '+_pt.substring(_di+3)+'</div>';
+            h+='<div class="par-title"><span style="color:'+TC.satellite+'">'+_pt.substring(0,_di)+'</span> '+_pt.substring(_di+3)+'</div>';
           } else {
             h+='<div class="par-title">'+_pt+'</div>';
           }
-          h+='<div class="par-meta">'+ICO_PIN+' '+(pe.room||'TBD')+''+'</div></div>';
+          h+='<div class="par-meta" style="color:#444">'+ICO_PIN+' '+(pe.room||'TBD')+''+'</div></div>';
         });
         h+='</div></div></div>';
         return;
@@ -2733,7 +2736,7 @@ function renderTimeline(cont){
         h+='<div style="flex:1">';
         h+='<div class="par-grid" style="grid-template-columns:repeat('+cols+',1fr)">';
         parallels.forEach(function(pe){
-          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" onclick="openPanel(\''+pe.id+'\')">';
+          h+='<div class="par-card'+(selId===pe.id?' selected':'')+'" data-id="'+pe.id+'" style="--par-color:#10708e" onclick="openPanel(\''+pe.id+'\')">';
           h+='<button style="position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;padding:4px" onclick="event.stopPropagation();toggleFav(\''+pe.id+'\',event)">'+(FAV[pe.id]?ICO_STAR_ON:ICO_STAR_OFF)+'</button>';
           h+='<div class="ev-badge" style="color:#10708e;margin-bottom:0">Parallel Session</div>';
           var _pt=pe.title,_di=_pt.indexOf(' \u2014 ');
@@ -2742,7 +2745,7 @@ function renderTimeline(cont){
           } else {
             h+='<div class="par-title">'+_pt+'</div>';
           }
-          h+='<div class="par-meta">'+ICO_PIN+' '+(pe.room||'TBD')+''+'</div></div>';
+          h+='<div class="par-meta" style="color:#444">'+ICO_PIN+' '+(pe.room||'TBD')+''+'</div></div>';
         });
         h+='</div></div></div>';
         return;
