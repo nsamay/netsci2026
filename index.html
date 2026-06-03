@@ -2793,6 +2793,8 @@ function renderTimeline(cont){
         h+='<span style="font-weight:500">'+(ev.presenter||ev.title)+'</span>';
         if(ev.talkTitle){var dt=ev.talkTitle;if(ev.presenter&&dt.toLowerCase().indexOf(ev.presenter.toLowerCase().split(' & ')[0].split(',')[0])===0){var ci=dt.indexOf(': ');if(ci>0)dt=dt.substring(ci+2);}h+='<span style="font-weight:400;color:#666">: '+dt+'</span>';}
         h+='</div>';
+      } else if(ev.remarks){
+        h+='<div class="ev-title">'+ev.title+'</div>';
       } else if(ev.type==='panel'){
         h+='<div class="ev-title">'+ev.title+'</div>';
       } else {
