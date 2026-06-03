@@ -1386,7 +1386,10 @@ function openPanel(id){
   // 1. Talk details (always first)
   h+='<div style="padding:28px 24px 16px">';
   if(!ev.remarks) h+='<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:'+c+';display:block;margin-bottom:8px">'+typeLabel(ev)+'</span>';
-  if((ev.type==='plenary'||ev.type==='school')&&!ev.remarks){
+  if(ev.remarks){
+    h+='<div style="font-size:24px;font-weight:400;color:#1f2024;line-height:1.25;margin-bottom:4px">'+ev.title+'</div>';
+    if(ev.presenter) h+='<div style="font-size:15px;color:#888;margin-top:4px">'+ev.presenter+'</div>';
+  } else if((ev.type==='plenary'||ev.type==='school')&&!ev.remarks){
     if(ev.talkTitle){
       h+='<div style="font-size:24px;font-weight:400;color:#1f2024;line-height:1.25;margin-bottom:4px">'+ev.talkTitle+'</div>';
       h+='<div style="font-size:15px;color:#888;margin-top:4px">'+ev.presenter+'</div>';
@@ -1400,7 +1403,6 @@ function openPanel(id){
   }
 
   if(ev.desc&&ev.type!=='special') h+='<div style="font-size:13px;color:#888;margin-top:4px">'+ev.desc+'</div>';
-  if(ev.remarks) h+='<div style="font-size:15px;color:#888;margin-top:6px">Speaker TBA</div>';
   h+='</div>';
 
   // 2. Meta details — each on its own line
